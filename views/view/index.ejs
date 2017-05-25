@@ -1,0 +1,39 @@
+<%- include('head') %>
+<div class="head">
+  <div class="headIn w">
+    <ul class="headIn-ul">
+      <li><a href="#">今日:5</a><span>|</span></li>
+      <li><a href="#">昨日:1294</a><span>|</span></li>
+      <li><a href="#">最高日:90432</a><span>|</span></li>
+      <li><a href="#">帖子:3432</a><span>|</span></li>
+      <li><a href="#">会员:93994</a><span>|</span></li>
+      <li><a href="#">新会员:知行</a></li>
+    </ul>
+  </div>
+</div>
+<nav>
+  <div class="navIn w">
+    <% for(var i=0;i<bk.length;i++){ %>
+    <div class="navIn-menu">
+      <div class="navIn-menu-top">
+        <h3 class="fl"><%= bk[i].bk_name %></h3>
+        <p class="fr">分栏版主：<%= bk[i].use_name %></p>
+      </div>
+      <div class="navIn-menu-middle clearfix">
+          <% for(var j=0;j<note.length;j++){ %>
+            <% if(bk[i].id == note[j].id ){%>
+              <div class="menu">
+                <dl>
+                  <dt><a href="/view/noteInfo/<%= bk[i].id %>"><%- note[j].note_name%></a></dt>
+                  <dd>主题：574，帖子：15784</dd>
+                  <dd>最后回复：2016-05-24 20:11</dd>
+                </dl>
+              </div>
+            <% } %>
+          <% } %>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</nav>
+<%- include('foot') %>

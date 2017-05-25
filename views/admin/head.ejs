@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<header>
+  <div class="headerIn w clearfix">
+    <ul class="headerIn-left-ul fl">
+      <li><a href="/view/">首页</a></li>
+      <li><a href="/admin/bkInfo">版块管理</a></li>
+      <li><a href="/admin/noteInfo">帖子管理</a></li>
+      <li><a href="/admin/useInfo">用户管理</a></li>
+      <li><a href="/admin/bkInfo">后台管理</a></li>
+    </ul>
+  </div>
+</header>
+<div class="menu-right">
+  <div class="menuIn-right">
+    <ul class="menuIn-right-ul">
+      <li><a href="/admin/addbk">增加版块</a></li>
+      <li><a href="/admin/addnote">上传帖子</a></li>
+      <li><a href="/admin/adduse">注册用户</a></li>
+    </ul>
+  </div>
+</div>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script>
+  $(function(){
+    $(".menuIn-right-ul>li").on('mouseenter',function(){
+      var index = $(this).index();
+      $(".menuIn-right-ul>li").eq(index).addClass('li').siblings().removeClass('li');
+    });
+    $(".menuIn-right-ul>li").on('mouseleave',function(){
+      $(".menuIn-right-ul > li").removeClass("li");
+    })
+  })
+</script>
+

@@ -1,0 +1,249 @@
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<%- include('head') %>
+<style>
+  .middle{
+    margin-top: 30px;
+  }
+  .middleIn-left{
+    width: 780px;
+    height: 700px;
+    background: #FFFFFF;
+    padding:0 10px;
+  }
+  .middleIn-left-top{
+    height: 150px;
+  }
+  .middleIn-left-top button{
+    width: 50px;
+    height: 30px;
+    background: blue;
+    margin: 10px 20px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 15px;
+  }
+  .middleIn-right{
+    width: 400px;
+    height: 700px;
+    margin-right: 75px;
+    background: #FFFFFF;
+  }
+  .dd{
+    margin-top: 50px;
+  }
+  .dd>h3>a{
+    margin: 20px;
+    padding-left: 50px;
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+  }
+  .a4 {
+    display: block;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: gainsboro;
+    border-radius: 10px;
+    margin-left: 70px;
+    float: left;
+    margin-top: 30px;
+  }
+  .a4:hover{
+    text-decoration:none;
+    color:#000000;
+  }
+  .aa{
+    color: #000000;
+    font-size: 13px;
+  }
+  .aa:hover{
+    color:gold;
+    text-decoration:none;
+    font-size: 13px;
+  }
+  dl>dt{
+    color:#000000;
+    font-weight: 900;
+    font-size: 13px;
+  }
+  dl>dd{
+    color: #000;
+    font-size: 15px;
+  }
+  .middleIn-left-ul{
+    width: 760px;
+    height: 50px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .middleIn-left-ul>li{
+    float: left;
+    line-height: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  .middleIn-left-ul>li>a{
+    color: #5289CA;
+    font-weight: 900;
+  }
+  .a1{
+    color: #000000;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 900;
+  }
+  .a2{
+    color:#138913;
+    height: 50px;
+    line-height: 50px;
+  }
+  .a3{
+    color: #FF1F1F;
+    height: 50px;
+    line-height: 50px;
+  }
+  .middleIn-left-bottom>a>span{
+    padding: 10px;
+    color: #EBEBEB;
+    height: 30px;
+    line-height: 30px;
+  }
+  .middleIn-left-bottom-box{
+    margin-top: 10px;
+    height: 100px;
+    padding-left: 80px;
+    padding-top: 20px;
+    border-bottom: 1px dashed #d5d5d5;
+    border-top: 1px dashed #d5d5d5;
+  }
+  .left{
+    color:#000000;
+    font-size: 15px;
+  }
+  .left-a:hover{
+    color:#6dbfff;
+    text-decoration:none;
+  }
+  .left>h3 >a{
+    font-size: 15px;
+    line-height: 30px;
+    color: #000000;
+    height: 30px;
+  }
+  .left>h3 >a:hover{
+    text-decoration: none;
+    color:#5289CA;
+  }
+  .right button{
+    width: 60px;
+    height: 50px;
+    margin-top: 5px;
+    float: left;
+    font-size: 20px;
+    color:#FFFFFF;
+    font-weight: 900;
+    background: #d5d5d5;
+    margin-left: 10px;
+  }
+  .a6{
+    color:#FFFFFF;
+  }
+  .a6:hover{
+    text-decoration:none;
+    color:#FFFFFF;
+  }
+</style>
+<div class="middle clearfix">
+  <div class="middleIn w ">
+    <div class="middleIn-left fl">
+      <div class="middleIn-left-top">
+        <dl>
+          <% for(var i = 0;i < bk.length;i++){ %>
+          <dt><a href="/view/" class="aa">首页<</a><%= bk[i].bk_name%></dt>
+          <dd>今日：3239&nbsp;&nbsp;&nbsp;主题：9434&nbsp;&nbsp;&nbsp;总贴：87483</dd>
+          <dd>版主：<a href="#"><%= bk[i].use_name%></a></dd>
+          <dd>内容...</dd>
+          <% } %>
+        </dl>
+        <button ><a class="a6" href="/view/edit">发帖</a></button>
+      </div>
+      <div class="middleIn-left-bottom">
+        <ul class="middleIn-left-ul">
+          <li><a href="#">推荐</a></li>
+          <li><a href="#">精华</a></li>
+          <li><a href="#">会员</a></li>
+          <li><a href="#">最新发布</a></li>
+          <li><a href="#">最新评论</a></li>
+          <li><a href="#">全部</a></li>
+        </ul>
+        <a class="a1" href="#">全部<span>|</span></a>
+        <a class="a2" href="#">官方动态<span>|</span></a>
+        <a class="a3" href="#">团队日志<span></span></a>
+        <div class="box1">
+          <% for(var i = 0;i < note.length;i++){ %>
+          <div class="middleIn-left-bottom-box " style="background:url('/images/img<%= i%>.png') 3px center no-repeat;">
+            <div class="left fl" >
+              <h3><a href="/view/content/<%= note[i].content_id %>"><%- note[i].content_name%></a></h3>
+              楼主： <a href="#" class="left-a">朋友的酒</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              最后回复：<a href="#" class="left-a">2015-03-05</a>
+            </div>
+            <div class="right fr">
+              <button>浏览</button>
+              <button>回复</button>
+            </div>
+          </div>
+          <% } %>
+        </div>
+        <div style="width:500px;margin-left: 50px;">
+          <ul class="pagination" id="pagination1"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="middleIn-right fr">
+    <a class="a4" href="/view/login">登录</a>
+    <a  class="a4" href="/view/register">注册</a>
+    <div class="fl dd">
+      <% for(var i = 0;i<note1.length; i++){%>
+      <h3><a href="/view/content/<%= note1[i].content_id %>"><%- note1[i].content_name%></a></h3>
+      <% } %>
+    </div>
+  </div>
+</div>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/jqPaginator.js"></script>
+<script>
+  $(function(){
+    $.jqPaginator("#pagination1", {
+      totalPages: 10,
+      visiblePages: 5,
+      currentPage: 1,
+      onPageChange: function (num, type) {
+        if(type=='change'){
+          $.ajax({
+            url:'/view/noteInfo1',
+            type:'post',
+            data:{num:num},
+            timeout:5000,
+            dataType:'json',
+            success:function(data,textStatus,jqXHR){
+              console.log(data);
+              $(".box1").empty();
+              for(var i=0;i<data.length;i++){
+                var div = 	$("<div class='middleIn-left-bottom-box'></div>");
+                $("<div class='left fl'></div>").html(" <h3><a href='/view/content/"+data[i].content_id+"'>"+data[i].content_name+"</a></h3>"+
+                "楼主： <a href='#' class='left-a'>朋友的酒</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+                "最后回复：<a href='#' class='left-a'>2015-03-05</a>").appendTo(div);
+                $("<div class='right fr'></div>").html("<button>浏览</button><button>回复</button>").appendTo(div);
+                $(".box1").append(div);
+              }
+            }
+          })
+        }
+
+      }
+    })
+  })
+</script>
+<%- include('foot') %>

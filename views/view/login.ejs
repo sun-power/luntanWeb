@@ -1,0 +1,103 @@
+<%- include('head') %>
+<style>
+  .middle{
+    margin-top: 30px;
+  }
+  .middleIn{
+    background: #FFFFFF;
+    height: 500px;
+  }
+  .middleIn-top{
+    padding-left: 350px;
+    height: 30px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .middleIn-top>h3{
+    height: 30px;
+    line-height: 30px;
+    color:#000;
+    font-weight: 900;
+  }
+  .middleIn-middle{
+    margin-left: 430px;
+    margin-top: 30px;
+  }
+  .middleIn-middle p{
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+  }
+  .middleIn-middle span{
+    color: #000000;
+  }
+  s{
+    color: red;
+  }
+  input[type="text"],input[type="password"]{
+    width: 200px;
+    height: 30px;
+    border: 1px solid #D7D7D7;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  input[type="submit"]{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    background: red;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 900;
+    border-radius: 20px;
+    margin-right: 100px;
+  }
+</style>
+<div class="middle">
+  <div class="middleIn w">
+    <div class="middleIn-top">
+      <h3><%= title%></h3>
+    </div>
+    <div class="middleIn-middle">
+      <form action="/view/" method="post">
+        <p><span>用户名：<s>*</s></span><input type="text" name="name" id="name"></p>
+        <p><span>密码：<s>*</s></span><input type="password" name="password" id="password"></p>
+        <p><input id="btu" type="submit" value="登录"></p>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("form").submit(function () {
+      if ($("input[name='name']").val() == "") {
+        alert("用户名不能为空");
+        return false;
+      }
+      else if ($("input[name='password']").val() == "") {
+        alert("密码不能为空");
+        return false;
+      }
+      else {
+        $.ajax({
+          type: "post",
+          url: "/view/loginCheck1",
+          data: { name: $("input[name='name']").val(),
+            password: $("input[name='password']").val()
+          },
+          success: function (data, status) {
+            if (data[0] == null) {
+              alert("用户名密码验证失败");
+            }else{
+              alert("登录成功");
+            }
+          }
+
+        });
+      }
+    });
+  });
+</script>
+<%- include('foot') %>

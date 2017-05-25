@@ -1,0 +1,197 @@
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<%- include('head') %>
+<script src="/ueditor/ueditor.config.js"></script>
+<script src="/ueditor/ueditor.all.js"></script>
+<script src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+<style>
+  .middle{
+    margin-top: 30px;
+  }
+  .middleIn-left button{
+    width: 50px;
+    height: 30px;
+    background: blue;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 15px;
+  }
+  .middleIn-left-top h1{
+    line-height: 50px;
+    height: 50px;
+    font-size: 40px;
+    color: red;
+    font-weight: 900;
+  }
+  .middleIn-left-bottom,.middleIn-left-top{
+    padding-top: 30px;
+    padding-left: 50px;
+  }
+  .middleIn-left{
+    width: 1200px;
+    border: 1px solid #E9E9E9;
+    background:#FFFFFF;
+  }
+  .edit-box{
+    margin-top: 20px;
+    background: #FFFFFF;
+    width: 1200px;
+  }
+  #btu{
+    width: 50px;
+    height: 30px;
+    background: blue;
+    border-radius: 5px;
+    margin-top: 10px;
+    float: right;
+    margin-right: 100px;
+    color: #FFFFFF;
+    font-size: 15px;
+  }
+  .middeIn-box{
+    width: 900px;
+    border-right: 1px solid #E9E9E9;
+  }
+  .middleIn-right{
+    width: 280px;
+    height: 300px;
+    background: #FFFFFF;
+  }
+  .middleIn-right h3{
+    text-align: center;
+    color: #000000;
+    height: 50px;
+    font-size: 30px;
+    line-height: 50px;
+  }
+  .banzhu-ul>li{
+    text-align:left;
+    padding-left: 20px;
+    color: #000000;
+    height: 30px;
+    line-height: 30px;
+  }
+  .pl{
+    width: 1200px;
+    margin: 20px 0;
+    height: 100px;
+    background:#FFFFFF;
+    border:1px solid #E9E9E9;
+    position: relative;
+  }
+  .pl>p{
+    margin:10px 30px ;
+  }
+  .pl-sapn1{
+    position:absolute;
+    bottom:0;
+    left: 30px;
+  }
+  .pl-span2{
+    position:absolute;
+    bottom:0;
+    left: 600px;
+  }
+  .pl-a{
+    position:absolute;
+    bottom:0;
+    right: 30px;
+  }
+</style>
+<div class="middle clearfix">
+  <div class="middleIn w ">
+    <div class="middleIn-left fl clearfix">
+      <div class="middeIn-box fl">
+        <div class="middleIn-left-top">
+          <h1><%- info.content_name %></h1>
+        </div>
+        <div class="middleIn-left-bottom">
+          <%- info.content_text %>
+        </div>
+      </div>
+      <div class="middleIn-right fr">
+        <h3>版主信息</h3>
+        <ul class="banzhu-ul">
+          <li>版主名：<a href="#">***</a> </li>
+          <li>发帖数： 3285</li>
+          <li>铜币： 95659两</li>
+          <li>威望： 1949点</li>
+          <li>贡献： 1545456点</li>
+          <li>注册日期： 206-11-15</li>
+          <li>最后登录： 2017-5-6</li>
+        </ul>
+      </div>
+    </div>
+    <div class="edit-box fl">
+      <form action="/view/content/<%= info.content_id %>">
+        <input type="hidden" id="id" value="<%= info.content_id %>">
+        <script id="editor" type="text/plain" style="width:1200px;height:100px;"></script>
+        <button id="btu">评论</button>
+      </form>
+    </div>
+    <div class=".box2">
+      <% for(var i=0;i < pl.length;i++){ %>
+      <div class="pl fl">
+        <%- pl[i].pl_text%>
+        <span class="pl-sapn1">评论时间:<%- pl[i].pl_time%></span>
+        <span class="pl-span2">评论人:<a href="#">某某某</a></span>
+        <a class="pl-a" href="/view/deletepl/<%= pl[i].pl_id %>">删除</a>
+      </div>
+      <% } %>
+    </div>
+
+    </div>
+    <div style="width:500px;margin-left: 120px;">
+      <ul class="pagination" id="pagination1"></ul>
+    </div>
+  </div>
+</div>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/jqPaginator.js"></script>
+<script>
+  $(function(){
+    var ue = UE.getEditor("editor");
+    $("#btu").on('click',function(){
+      var c=ue.getContent();
+      var id = $('#id').val();
+      $.ajax({
+        type:"post",
+        url:"/view/addpl",
+        data:{content:c,content1:id},
+        success:function(data){
+//        console.log(data);
+        }
+      })
+    })
+//    $.jqPaginator("#pagination1", {
+//      totalPages: 10,
+//      visiblePages: 5,
+//      currentPage: 1,
+//      onPageChange: function (num, type) {
+//        var id = $('#id').val();
+//        if(type=='change'){
+//          $.ajax({
+//            url:'/view/content1',
+//            type:'post',
+//            data:{num:num,content_id:id},
+//            timeout:5000,
+//            dataType:'json',
+//            success:function(data1,textStatus,jqXHR){
+//              console.log(data1);
+//              $(".box2").empty();
+//              for(var i=0;i<data1.length;i++){
+//                var div = 	$("<div class='pl fl'></div>");
+//                $("").html(data1[i].pl_text);
+//                $("<span class='pl-sapn1'></span>").html('评论时间:' + data1[i].pl_time ).appendTo(div);
+//                $("<span class='pl-span2'></span>").html('评论人:').appendTo(div);
+//                $("").html("<a class='pl-a' href='/view/deletepl/"+'data1[i].pl_id '+"'>删除</a>").appendTo(div);
+//                $(".box2").append(div);
+//              }
+//            }
+//          })
+//        }
+//
+//      }
+//    })
+  })
+</script>
+<%- include('foot') %>

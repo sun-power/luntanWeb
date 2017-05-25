@@ -1,0 +1,127 @@
+<%- include('head') %>
+<style>
+  .middle{
+    margin-top: 30px;
+  }
+  .middleIn{
+    background: #FFFFFF;
+    height: 500px;
+  }
+  .middleIn-top{
+    padding-left: 350px;
+    height: 30px;
+    border-bottom: 1px solid #F3F3F3;
+  }
+  .middleIn-top>h3{
+    height: 30px;
+    line-height: 30px;
+    color:#000;
+    font-weight: 900;
+  }
+  .middleIn-middle{
+    margin-left: 430px;
+    margin-top: 30px;
+  }
+  .middleIn-middle p{
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+  }
+  .middleIn-middle span{
+    color: #000000;
+  }
+  s{
+    color: red;
+  }
+  input[type="text"],input[type="password"]{
+    width: 200px;
+    height: 30px;
+    border: 1px solid #D7D7D7;
+    font-size: 15px;
+    margin-left: 10px;
+  }
+  .p1{
+    padding-right:92px;
+    color: #0000FF;
+  }
+  input[type="submit"]{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    background: red;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 900;
+    border-radius: 20px;
+    margin-right: 100px;
+  }
+</style>
+<div class="middle">
+  <div class="middleIn w">
+    <div class="middleIn-top">
+      <h3>欢迎注册，成为本论坛的会员</h3>
+    </div>
+    <div class="middleIn-middle">
+      <form action="/view/registerCheck">
+        <p><span>用户名：<s>*</s></span><input type="text" name="use_name" id="name"></p>
+        <p><span>密码：<s>*</s></span><input type="password" name="use_password" id="password"></p>
+        <p><span>确认密码：<s>*</s></span><input type="password" name="use_repassword" id="repassword"></p>
+        <p class="p1"><input id="agree" type="checkbox" name="agree" value="agree">《论坛协议》</p>
+        <p><input type="submit" value="注册"></p>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("form").submit(function () {
+      if ($("#name").val() == "") {
+        $(".tishi").remove();
+        $("<span class='tishi'></span>").text('用户名不能为空').css({'color':'red','position':'absolute','top':'140px','right':'420px'
+        }).insertAfter("#name");
+        return false;
+      }
+      else if ($("#password").val() == ""){
+        $(".tishi").remove();
+        $("<span class='tishi'></span>").text('密码不能为空').css({'color':'red','position':'absolute','top':'190px','right':'435px'
+        }).insertAfter("#password");
+        return false;
+      }
+      else if ($("#password").val() != $('#repassword').val() ) {
+        $(".tishi").remove();
+        $("<span class='tishi'></span>").text('两次密码不一致').css({'color':'red','position':'absolute','top':'240px','right':'420px'
+        }).insertAfter("#repassword");
+        return false;
+      }
+      else if($('#agree:checked').val() != 'agree'){
+        $(".tishi").remove();
+        $("<span class='tishi'></span>").text('请勾选同意协议').css({'color':'red','position':'absolute','top':'290px','right':'420px'
+        }).insertAfter("#agree");
+        return false;
+      }
+    });
+    $("#name").on('blur',function() {
+      $.ajax({
+        type: "post",
+        url: "/view/registerCheck1",
+        data: {name: $("#name").val()},
+        success: function (data, status) {
+          if (data[0] == null) {
+            $(".tishi").remove();
+            $("<span class='tishi'></span>").text('OK').css({
+              'color': 'green', 'position': 'absolute', 'top': '140px', 'right': '420px'
+            }).insertAfter("#name");
+          } else {
+            $(".tishi").remove();
+            $("<span class='tishi'></span>").text('用户名已被占用').css({
+              'color': 'red', 'position': 'absolute', 'top': '140px', 'right': '420px'
+            }).insertAfter("#name");
+          }
+        }
+      });
+    });
+  });
+</script>
+<%- include('foot') %>

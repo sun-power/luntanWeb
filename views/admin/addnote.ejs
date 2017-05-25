@@ -1,0 +1,51 @@
+<%- include('head') %>
+<style>
+    .table-box {
+        width: 700px;
+        float: left;
+        height: 600px;
+        margin: 50px 150px;
+    }
+    .table-box  p{
+        width: 500px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .table-box  span{
+        color: #000000;
+    }
+    s{
+        color: red;
+    }
+    input[type="text"]{
+        width: 200px;
+        height: 30px;
+        border: 1px solid #D7D7D7;
+        font-size: 15px;
+        margin-left: 10px;
+    }
+    input[type="submit"]{
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        background: red;
+        color: #FFFFFF;
+        font-size: 15px;
+        font-weight: 900;
+        border-radius: 20px;
+        margin-right: 100px;
+    }
+</style>
+  <div class="table-box w">
+      <form action="/admin/addnoteCheck">
+          <p><span>版块名：</span>
+              <select name="id">
+                  <% for (var i=0;i<info.length;i++){ %>
+                  <option value="<%= info[i].id%>"><%= info[i].bk_name %></option>
+                  <% } %>
+              </select>
+          </p>
+          <p><span>帖子主题名：<s>*</s></span><input type="text" name="note_name"></p>
+          <p><input type="submit" value="提交"></p>
+      </form>
+</div>

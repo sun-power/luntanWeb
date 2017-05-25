@@ -1,0 +1,116 @@
+body{
+    background: #F1F5F8;
+}
+/*header开始*/
+header{
+    width:100%;
+    height: 50px;
+    background:#0078D8;
+}
+.headerIn-left-ul>li{
+    float: left;
+    padding-right:20px;
+    height: 50px;
+    line-height: 50px;
+}
+.headerIn-left-ul>li>a{
+    color: #FFFFFF;
+    font-size: 20px;
+}
+.headerIn-right-ul>li{
+    float: left;
+    padding-left:20px;
+    height: 50px;
+    line-height:50px
+}
+.headerIn-right-ul>li>a{
+    font-size: 20px;
+    color: #FFFFFF;
+}
+/*header结束*/
+/*head开始*/
+.head{
+    width: 100%;
+    height: 24px;
+}
+.headIn-ul>li{
+    margin-top: 5px;
+    float: left;
+    height: 14px;
+    font-size: 13px;
+    line-height: 14px;
+}
+.headIn-ul>li>span{
+    margin: 0 10px;
+}
+/*head结束*/
+/*nav开始*/
+nav{
+    margin-top: 20px;
+}
+.navIn{
+    background: #F7F7F7;
+}
+.navIn-menu{
+    height: 150px;
+}
+.navIn-menu-top{
+    height: 50px;
+}
+.navIn-menu-top >h3{
+    margin-left: 20px;
+    color:#0000FF;
+    font-weight: 900;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+}
+.navIn-menu-top>p{
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color:green;
+    margin-right: 20px;
+}
+.navIn-menu-middle{
+    height: 100px;
+    background: #FFFFFF;
+}
+.menu{
+    float: left;
+    width: 400px;
+    padding: 10px 50px;
+}
+dl>dt{
+    font-weight: 900;
+    line-height: 25px;
+    height: 25px;
+    font-size: 15px;
+}
+dl>dt>a{
+    color:#000000;
+}
+dl>dd{
+    color: #000;
+    line-height: 25px;
+    height: 25px;
+    padding-left: 20px;
+    font-size: 15px;
+}
+/*nav结束*/
+/*footerIn开始*/
+.footerIn{
+    margin-top: 30px;
+    height: 100px;
+    text-align: center;
+    padding-top: 20px;
+    border-top:1px solid #CDD1D3;
+}
+.footerIn span a{
+    padding-left: 10px;
+    font-size: 15px;
+}
+.footerIn p{
+    margin-top: 20px;
+}
+/*footerIn结束*/

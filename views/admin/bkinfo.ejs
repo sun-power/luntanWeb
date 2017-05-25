@@ -1,0 +1,42 @@
+<%- include('head') %>
+<style>
+    .table-box{
+        width: 600px;
+        float: left;
+        height: 600px;
+        margin: 50px;
+    }
+    *{
+        margin: 0 auto;
+        padding: 0;
+    }
+    table{
+        width: 500px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    table tr th,tr td{
+        color:#000000;
+        border:1px solid #d9e0ee;
+    }
+</style>
+<div class="table-box">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>版块名</th>
+                <th>版主昵称</th>
+                <th>修改</th>
+                <th>删除</th>
+            </tr>
+            <% for(var i=0;i<info.length;i++) {%>
+            <tr>
+                <td><%= info[i].id %></td>
+                <td><%= info[i].bk_name %></td>
+                <td><%= info[i].use_name %></td>
+                <td><a href="/admin/updatebk/<%= info[i].id%>">修改</a></td>
+                <td><a href="/admin/deletebk/<%= info[i].id%>">删除</a></td>
+            </tr>
+            <%}%>
+        </table>
+</div>

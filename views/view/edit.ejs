@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="/ueditor/ueditor.config.js"></script>
+  <script src="/ueditor/ueditor.all.js"></script>
+  <script src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+  <script src="/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<form action="/view/noteInfo/1" method="get">
+  <p>主题：<input type="text" name="name"></p>
+  <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+  <button id="btu">添加</button>
+</form>
+<script>
+  var ue = UE.getEditor("editor");
+  $("#btu").on('click',function(){
+    var c=ue.getContent();
+    var name = $('input').val();
+    $.ajax({
+      type:"post",
+      url:"/view/addcontent",
+      data:{content:c,name:name},
+      success:function(data){
+        if(data.reg == 1){
+          alert('发布成功');
+        }else{
+          alert('发布失败');
+        }
+      }
+    })
+  })
+
+</script>
+</body>
+</html>
